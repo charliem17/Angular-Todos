@@ -1,0 +1,25 @@
+<div class="tab open">
+
+    <div class="top">
+        <p class="title">Projects</p>
+        <div class="arrow" (click)="toggleTab()">
+            <div class="arrow-container">
+                <div class="line1"></div>
+                <div class="line2"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="projects-container">
+        <div 
+        class="project"
+        *ngFor="let project of projects"
+        >
+            <p class="name">{{ project.name }}</p>
+            <p class="date">{{ project.date }}</p>
+            <button class="open" (click)="openProject(project.id)">Open</button>
+            <button class="dlt" (click)="removeProject(project.id)">Delete</button>
+        </div>
+    </div>
+    <button (click)="createProject('new project')">New Project</button>
+</div>

@@ -1,0 +1,31 @@
+<section>
+    <div class="new-todo">
+        <button>New Todo</button>
+    </div>
+    <div class="todo-ui"> <!--class "show" shows it-->
+        <div class="todo-container">
+            <h1>New Todo</h1>
+            <h3>You got this!</h3>
+            <input type="text" placeholder="Title">
+            <textarea type="text" placeholder="Description"></textarea>
+            <button>Submit</button>
+            <button>Exit</button>
+        </div>
+    </div>
+    <div class="projects-container">
+        <div 
+        class="project"
+        *ngIf="currentProject">
+            <p class="name">{{ currentProject.name }}</p>
+            <p class="date">{{ currentProject.date }}</p>
+            <div
+                class="todo-item"
+                *ngFor="let todoItem of currentProject.todoItems"
+                >
+                <p>{{ todoItem.title }}</p>
+                <p>{{ todoItem.description }}</p>
+                <p>Complete: {{ todoItem.complete }}</p>
+            </div>
+        </div>
+    </div>
+</section>

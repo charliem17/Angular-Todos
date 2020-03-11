@@ -1,0 +1,80 @@
+
+@tab-closed-width: 90px;
+.tab {
+
+    display: flex;
+    flex-flow: column;
+
+    position: fixed;
+    background-color: #999999;
+
+    width: 250px;
+    height: 100%;
+    padding: .5em @tab-closed-width 0 .5em;
+
+    opacity: .75;
+    transform: translateX(-75%);
+    transition: transform .5s, opacity .5s;
+
+    &.open {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+
+    .top {
+
+        display: flex;
+        justify-content: space-between;
+
+        .title {
+            font-size: 3em;
+        }
+
+        @triangle-size: 25px;
+        .arrow {
+
+            width: 60px;
+            height: 60px;
+            margin-left: @tab-closed-width - 10px;
+            .arrow-container {
+
+                margin: 15px 0 0 15px;
+
+                .line1, .line2 {
+                    width: 41px;
+                    height: 8px;
+                    background-color: black;
+                }
+                .line1 {
+                    transform: rotate(40deg);
+                }
+                .line2 {
+                    position: relative;
+                    transform: rotate(-40deg);
+                    top: 14px;
+                }
+            }
+            
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .projects-container {
+
+        height: 800px;
+        background-color: darkgray;
+        overflow-y: auto;
+
+        .project {
+            padding: .5em .75em;
+            .name {
+                font-size: 2em;
+            }
+            .dlt {
+                margin-left: 20px;
+            }
+        }
+    }
+}
