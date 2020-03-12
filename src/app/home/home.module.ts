@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { HomeComponent } from './home/home.component';
 import { CompletedSectionComponent } from './home/completed-section/completed-section.component';
+import { ConfirmationComponent } from '../confirmation/confirmation.component';
 
 
 
@@ -12,11 +13,15 @@ import { CompletedSectionComponent } from './home/completed-section/completed-se
   declarations: [
     HomeComponent, 
     CompletedSectionComponent,
+    ConfirmationComponent
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     FormsModule
+  ],
+  exports: [
+    ConfirmationComponent
   ]
 })
 export class HomeModule { }

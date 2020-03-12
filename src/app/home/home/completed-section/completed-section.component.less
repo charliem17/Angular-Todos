@@ -66,6 +66,8 @@ section {
 
         .todo-item {
 
+            display: flex;
+            flex-flow: column;
             width: 300px;
             height: 400px;
             padding: 1em;
@@ -80,6 +82,11 @@ section {
             .todo-desc {
                 padding-top: 1em;
                 font-size: 1.25em;
+                flex: 1;
+            }
+            button {
+                align-self: center;
+                width: 8em;
             }
         }
     }

@@ -19,7 +19,9 @@
             >
             <p class="todo-title">{{ todoItem.title }}</p>
             <p class="todo-desc">{{ todoItem.description }}</p>
-            <!-- <p class="todo-complete">Complete: {{ todoItem.complete }}</p> -->
+            <button (click)="deleteTodo(todoItem)">Delete</button>
         </div>
     </div>
 </section>
+
+<app-confirmation *ngIf="showConfirmationUI"></app-confirmation>

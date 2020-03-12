@@ -8,11 +8,17 @@ body {
 }
 
 button {
-    border: none;
+
+    border: 2px solid transparent;
     padding: .5em 2em;
     font-family: 'Poppins';
 
+    transition: border-color .25s;
+
     &:focus {
         outline: none;
+    }
+    &:hover {
+        border-color: black;
     }
 }

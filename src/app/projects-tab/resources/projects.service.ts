@@ -80,6 +80,11 @@ export class ProjectsService {
 
   addTodoToProject(todoItem: TodoItem) {
     this.currentOpenProject.todoItems[this.currentOpenProject.todoItems.length] = todoItem;
-    console.log(`Added todo item: ${todoItem} to project: ${this.currentOpenProject}`);
+  }
+
+  removeTodoFromProject(todoItem: TodoItem) {
+    let index: number = this.currentOpenProject.todoItems.findIndex(todo => todoItem == todo);
+
+    this.currentOpenProject.todoItems.splice(index, 1);
   }
 }

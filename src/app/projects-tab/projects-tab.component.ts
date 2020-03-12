@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from './resources/projects.service';
 import { Project } from './resources/project.interface';
+import { ConfirmationService } from '../confirmation/confirmation.service';
 
 @Component({
   selector: 'app-projects-tab',
@@ -17,7 +18,12 @@ export class ProjectsTabComponent implements OnInit {
   projectNameInput: string = "";
   projectCreationUI: HTMLElement;
 
-  constructor(private projectsService: ProjectsService) { }
+  showConfirmationUI: boolean = false;
+
+  constructor(
+    private projectsService: ProjectsService,
+    private confirmationService: ConfirmationService
+  ){ }
 
   ngOnInit(): void {
     this.getProjects();
@@ -47,13 +53,31 @@ export class ProjectsTabComponent implements OnInit {
   }
 
   createProject(): void {
+
+    if(this.projectNameInput == "") {
+      this.projectNameInput = `project${this.projects.length+1}`;
+      return;
+    }
+
     this.projectsService.createProject(this.projectNameInput);
     this.projectNameInput = "";
     this.toggleProjectUI(false);
   }
 
   removeProject(id: number): void {
-    this.projectsService.removeProject(id);
+
+    this.showConfirmationUI = true;
+
+    let confirmationListener = this.confirmationService.listener;
+    let subscription = confirmationListener.subscribe(
+      (confirmation) => {
+        if(confirmation) {
+          this.projectsService.removeProject(id);
+        }
+        this.showConfirmationUI = false;
+        subscription.unsubscribe();
+      },
+    );
   }
 
 }

@@ -5,7 +5,7 @@ import { CompletedSectionComponent } from './home/home/completed-section/complet
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { 
     path: 'home', 
     component: HomeComponent, 

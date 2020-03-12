@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from 'src/app/projects-tab/resources/projects.service';
 import { Project } from 'src/app/projects-tab/resources/project.interface';
 import { TodoItem } from 'src/app/todo-item.interface';
+import { ConfirmationService } from 'src/app/confirmation/confirmation.service';
 
 @Component({
   selector: 'app-completed-section',
@@ -16,7 +17,12 @@ export class CompletedSectionComponent implements OnInit {
 
   todoUI: HTMLElement;
 
-  constructor(private projectService: ProjectsService) { }
+  showConfirmationUI: boolean = false;
+
+  constructor(
+    private projectService: ProjectsService,
+    private confirmationService: ConfirmationService
+  ) { }
 
   ngOnInit(): void {
     this.watchCurrentProject();
@@ -65,4 +71,19 @@ export class CompletedSectionComponent implements OnInit {
     this.todoUI.classList.remove('show');
   }
 
+  deleteTodo(todo: TodoItem): void {
+
+    this.showConfirmationUI = true;
+
+    let confirmationListener = this.confirmationService.listener;
+    let subscription = confirmationListener.subscribe(
+      (confirmation) => {
+        if(confirmation) {
+          this.projectService.removeTodoFromProject(todo);
+        }
+        this.showConfirmationUI = false;
+        subscription.unsubscribe();
+      },
+    );
+  }
 }

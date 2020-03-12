@@ -1,11 +1,8 @@
 <div class="project-tab"> <!--Class "open" opens-->
-    <div class="top">
-        <p class="title">Projects</p>
-        <div class="arrow" (click)="toggleTab($event.target)">
-            <div class="arrow-container">
-                <div class="line1"></div>
-                <div class="line2"></div>
-            </div>
+    <div class="arrow" (click)="toggleTab($event.target)">
+        <div class="arrow-container">
+            <div class="line1"></div>
+            <div class="line2"></div>
         </div>
     </div>
     
@@ -21,7 +18,7 @@
         </div>
     </div>
 
-    <button (click)="toggleProjectUI(true)">New Project</button>
+    <button class="new-btn" (click)="toggleProjectUI(true)">New Project</button>
 </div>
 
 <div class="create-project-ui">
@@ -32,3 +29,5 @@
         <button class="cancel" (click)="toggleProjectUI(false)">Cancel</button>
     </div>
 </div>
+
+<app-confirmation *ngIf="showConfirmationUI"></app-confirmation>
