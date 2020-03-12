@@ -12,6 +12,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'completed', pathMatch: 'full' },
       { path: 'completed', component: CompletedSectionComponent }
+      // { path: 'incomplete', component: }
     ]
   }
 ];

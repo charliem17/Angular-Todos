@@ -46,8 +46,8 @@ export class ProjectsService {
   createProject(projName: string): void {
 
     let newDate = new Date(Date.now());
-    let currentDate = `${newDate.getMonth()}/${newDate.getDay()}/${newDate.getFullYear()}`;
-
+    let currentDate = `${newDate.getMonth()+1}/${newDate.getDate()}/${newDate.getFullYear()}`;
+    
     let newProject: Project = {
       id: this.projects.length,
       name: projName,
@@ -76,5 +76,10 @@ export class ProjectsService {
 
     // Project changed. Notify listeners.
     this.observableOpenProject.next(this.currentOpenProject);
+  }
+
+  addTodoToProject(todoItem: TodoItem) {
+    this.currentOpenProject.todoItems[this.currentOpenProject.todoItems.length] = todoItem;
+    console.log(`Added todo item: ${todoItem} to project: ${this.currentOpenProject}`);
   }
 }

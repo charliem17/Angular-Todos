@@ -1,15 +1,14 @@
-<div class="tab open">
-
+<div class="project-tab"> <!--Class "open" opens-->
     <div class="top">
         <p class="title">Projects</p>
-        <div class="arrow" (click)="toggleTab()">
+        <div class="arrow" (click)="toggleTab($event.target)">
             <div class="arrow-container">
                 <div class="line1"></div>
                 <div class="line2"></div>
             </div>
         </div>
     </div>
-
+    
     <div class="projects-container">
         <div 
         class="project"
@@ -21,5 +20,15 @@
             <button class="dlt" (click)="removeProject(project.id)">Delete</button>
         </div>
     </div>
-    <button (click)="createProject('new project')">New Project</button>
+
+    <button (click)="toggleProjectUI(true)">New Project</button>
+</div>
+
+<div class="create-project-ui">
+    <div class="new-project-container">
+        <p class="title">Project Creation</p>
+        <input [(ngModel)]="projectNameInput" type="text" placeholder="project name">
+        <button class="create" (click)="createProject()">Create</button>
+        <button class="cancel" (click)="toggleProjectUI(false)">Cancel</button>
+    </div>
 </div>
