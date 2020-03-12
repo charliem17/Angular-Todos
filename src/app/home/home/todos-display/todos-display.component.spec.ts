@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CompletedSectionComponent } from './completed-section.component';
+import { TodosDisplayComponent } from './todos-display.component';
 
-describe('CompletedSectionComponent', () => {
-  let component: CompletedSectionComponent;
-  let fixture: ComponentFixture<CompletedSectionComponent>;
+describe('TodosDisplayComponent', () => {
+  let component: TodosDisplayComponent;
+  let fixture: ComponentFixture<TodosDisplayComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CompletedSectionComponent ]
+      declarations: [ TodosDisplayComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CompletedSectionComponent);
+    fixture = TestBed.createComponent(TodosDisplayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

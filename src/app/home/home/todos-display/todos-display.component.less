@@ -1,4 +1,49 @@
+.todo-links {
+
+    width: 100%;
+    position: fixed;
+    z-index: 0;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+
+    font-size: 1.5em;
+    padding: 9px 0;
+
+    a {
+        text-decoration: none;
+        color: black;
+
+        &:hover {
+            cursor: pointer;
+        }
+        &:not(:last-child) {
+            margin-right: 1em;
+        }
+        &.highlight {
+            color: white;
+        }
+    }
+}
+
 section {
+
+    padding-top: 3.5em;
+
+    .background-img {
+
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        z-index: -99;
+
+        background: url('https://wallpaperaccess.com/full/1170358.jpg')
+            no-repeat center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
 
     .new-todo {
 
@@ -63,6 +108,7 @@ section {
 
         display: flex;
         flex-flow: wrap;
+        justify-content: center;
 
         .todo-item {
 
@@ -73,7 +119,9 @@ section {
             padding: 1em;
             margin: 1em;
 
-            background-color: gray;
+            background-color: rgba(255, 255, 255, .75);
+            border: 2px solid black;
+            border-radius: 15px;
 
             .todo-title {
                 text-align: center;
@@ -83,10 +131,18 @@ section {
                 padding-top: 1em;
                 font-size: 1.25em;
                 flex: 1;
+
+                overflow-wrap: break-word;
+                overflow-y: auto;
             }
             button {
+                margin: .5em 0;
                 align-self: center;
                 width: 8em;
+
+                &.complete {
+                    width: 50%;
+                }
             }
         }
     }

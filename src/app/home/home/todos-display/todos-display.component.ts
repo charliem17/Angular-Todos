@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectsService } from 'src/app/projects-tab/resources/projects.service';
 import { Project } from 'src/app/projects-tab/resources/project.interface';
-import { TodoItem } from 'src/app/todo-item.interface';
+import { ProjectsService } from 'src/app/projects-tab/resources/projects.service';
 import { ConfirmationService } from 'src/app/confirmation/confirmation.service';
+import { TodoItem } from 'src/app/todo-item.interface';
 
 @Component({
-  selector: 'app-completed-section',
-  templateUrl: './completed-section.component.html',
-  styleUrls: ['./completed-section.component.less']
+  selector: 'app-todos-display',
+  templateUrl: './todos-display.component.html',
+  styleUrls: ['./todos-display.component.less']
 })
-export class CompletedSectionComponent implements OnInit {
-
+export class TodosDisplayComponent implements OnInit {
+  
   titleInput: string = "";
   descriptionInput: string = "";
   currentProject: Project;
@@ -18,6 +18,10 @@ export class CompletedSectionComponent implements OnInit {
   todoUI: HTMLElement;
 
   showConfirmationUI: boolean = false;
+
+  showCompleted: boolean;
+  showTodo: HTMLElement;
+  showComplete: HTMLElement;
 
   constructor(
     private projectService: ProjectsService,
@@ -27,6 +31,9 @@ export class CompletedSectionComponent implements OnInit {
   ngOnInit(): void {
     this.watchCurrentProject();
     this.todoUI = document.querySelector('section.complete .todo-ui');
+    this.showTodo = document.querySelector('#show-todo');
+    this.showComplete = document.querySelector('#show-complete');
+    this.toggleShow(false);
   }
 
   watchCurrentProject(): void {
@@ -37,7 +44,7 @@ export class CompletedSectionComponent implements OnInit {
     );
   }
 
-  newTodo(): void {
+  openNewTodoUI(): void {
     // Opens new todo UI
     this.todoUI.classList.toggle('show');
   }
@@ -85,5 +92,22 @@ export class CompletedSectionComponent implements OnInit {
         subscription.unsubscribe();
       },
     );
+  }
+
+  completeTodo(todo: TodoItem): void {
+    todo.complete = true;
+  }
+
+  toggleShow(showComplete: boolean): void {
+
+    this.showCompleted = showComplete;
+
+    if(this.showCompleted) {
+      this.showTodo.classList.remove('highlight');
+      this.showComplete.classList.add('highlight');
+    } else {
+      this.showTodo.classList.add('highlight');
+      this.showComplete.classList.remove('highlight');
+    }
   }
 }

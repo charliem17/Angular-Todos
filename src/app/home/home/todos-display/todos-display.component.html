@@ -1,0 +1,38 @@
+<div class="todo-links">
+    <a class="highlight" id="show-todo" (click)="toggleShow(false)">Todo</a>
+    <a class="" id="show-complete" (click)="toggleShow(true)">Complete</a>
+</div>
+<section class="complete">
+    <div class="background-img"></div>
+    <div class="new-todo">
+        <button (click)="openNewTodoUI()">New Todo</button>
+    </div>
+    <!-- UI for creating new Todo -->
+    <div class="todo-ui"> <!--class "show" shows it-->
+        <div class="todo-container">
+            <h1>New Todo</h1>
+            <h3>You got this!</h3>
+            <input [(ngModel)]="titleInput" type="text" placeholder="Title">
+            <textarea [(ngModel)]="descriptionInput" type="text" placeholder="Description"></textarea>
+            <button (click)="createNewTodo()">Create</button>
+            <button (click)="closeNewTodoUI()">Exit</button>
+        </div>
+    </div>
+    <!-- Lists every todo item -->
+    <div class="projects-container" *ngIf="currentProject">
+        <ng-container
+            *ngFor="let todoItem of currentProject.todoItems"
+            >
+            <div class="todo-item" *ngIf="todoItem.complete == showCompleted">
+                <p class="todo-title">{{ todoItem.title }}</p>
+                <p class="todo-desc">{{ todoItem.description }}</p>
+                <ng-container *ngIf="todoItem.complete == false">
+                    <button class="complete" (click)="completeTodo(todoItem)">Complete</button>
+                </ng-container>
+                <button (click)="deleteTodo(todoItem)">Delete</button>
+            </div>
+        </ng-container>
+    </div>
+</section>
+
+<app-confirmation *ngIf="showConfirmationUI"></app-confirmation>

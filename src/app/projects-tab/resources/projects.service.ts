@@ -9,21 +9,7 @@ import { TodoItem } from 'src/app/todo-item.interface';
 export class ProjectsService {
 
   idCount: number = 0;
-  projects: Project[] = [
-    {
-      id: this.idCount,
-      name: 'Project 1',
-      date: '03/30/02',
-      complete: false,
-      todoItems: [
-          {
-            title: 'Title',
-            description: 'Description',
-            complete: false
-          }
-      ]
-    }
-  ];
+  projects: Project[] = [];
 
   currentOpenProject: Project;
   observableOpenProject: Subject<Project>; // Completed-section and Uncompleted-section listen to this value
@@ -53,13 +39,7 @@ export class ProjectsService {
       name: projName,
       date: currentDate,
       complete: false,
-      todoItems: [
-        {
-          title: 'Title',
-          description: 'Description',
-          complete: false
-        }
-      ]
+      todoItems: []
     }
 
     this.projects[this.projects.length] = newProject;

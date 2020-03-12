@@ -4,16 +4,16 @@ import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule } from '@angular/forms';
 
 import { HomeComponent } from './home/home.component';
-import { CompletedSectionComponent } from './home/completed-section/completed-section.component';
 import { ConfirmationComponent } from '../confirmation/confirmation.component';
+import { TodosDisplayComponent } from './home/todos-display/todos-display.component';
 
 
 
 @NgModule({
   declarations: [
     HomeComponent, 
-    CompletedSectionComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    TodosDisplayComponent
   ],
   imports: [
     CommonModule,
