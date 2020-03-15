@@ -1,3 +1,5 @@
+@import '../../variables.less';
+
 .project-tab {
 
     display: flex;
@@ -5,7 +7,7 @@
 
     position: fixed;
     z-index: 99;
-    background-color: #999999;
+    // background-color: @color1;
 
     width: 250px;
     height: 100%;
@@ -34,7 +36,7 @@
             .line1, .line2 {
                 width: 30px;
                 height: 6px;
-                background-color: white;
+                background-color: @color4;
                 transition: transform .75s;
             }
             .line1 {
@@ -66,7 +68,7 @@
     .projects-container {
 
         height: 800px;
-        background-color: darkgray;
+        background-color: @color1;
         overflow-y: auto;
         flex: 1;
 
@@ -76,8 +78,9 @@
             flex-flow: column;
 
             padding: .5em .75em;
-            margin: .25em;
-            background-color: #8f8f8f;
+            margin: .5em;
+            background-color: @color2;
+            border-radius: 5px;
 
             .name {
                 font-size: 2em;
@@ -99,6 +102,7 @@
     .new-btn {
         border-color: @btn-color;
         transition: background-color .5s;
+        border-radius: 0;
         &:hover {
             background-color: @btn-color;
         }

@@ -4,11 +4,11 @@
 </div>
 <section class="complete">
     <div class="background-img"></div>
-    <div class="new-todo">
+    <div class="new-todo" *ngIf="currentProject">
         <button (click)="openNewTodoUI()">New Todo</button>
     </div>
     <!-- UI for creating new Todo -->
-    <div class="todo-ui"> <!--class "show" shows it-->
+    <div class="new-todo-ui"> <!--class "show" shows it-->
         <div class="todo-container">
             <h1>New Todo</h1>
             <h3>You got this!</h3>

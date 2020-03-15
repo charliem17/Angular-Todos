@@ -30,7 +30,7 @@ export class TodosDisplayComponent implements OnInit {
 
   ngOnInit(): void {
     this.watchCurrentProject();
-    this.todoUI = document.querySelector('section.complete .todo-ui');
+    this.todoUI = document.querySelector('section.complete .new-todo-ui');
     this.showTodo = document.querySelector('#show-todo');
     this.showComplete = document.querySelector('#show-complete');
     this.toggleShow(false);
@@ -96,6 +96,7 @@ export class TodosDisplayComponent implements OnInit {
 
   completeTodo(todo: TodoItem): void {
     todo.complete = true;
+    this.projectService.updateTodoInProject(todo);
   }
 
   toggleShow(showComplete: boolean): void {

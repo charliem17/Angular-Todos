@@ -1,9 +1,10 @@
+@import '../../../../variables.less';
+
 .todo-links {
 
     width: 100%;
     position: fixed;
-    z-index: 0;
-    background-color: gray;
+    background-color: @color3;
     display: flex;
     justify-content: center;
 
@@ -25,11 +26,7 @@
         }
     }
 }
-
 section {
-
-    padding-top: 3.5em;
-
     .background-img {
 
         width: 100%;
@@ -44,7 +41,6 @@ section {
         background-size: cover;
         background-attachment: fixed;
     }
-
     .new-todo {
 
         position: fixed;
@@ -53,16 +49,17 @@ section {
         margin: 10px;
 
     }
-    .todo-ui {
+    .new-todo-ui {
 
         position: fixed;
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, .8);
-
+    
         display: flex;
         justify-content: center;
-
+        align-items: center;
+    
         opacity: 0;
         z-index: -1;
         
@@ -71,9 +68,9 @@ section {
             transition: opacity .5s;
             z-index: 99;
         }
-
+    
         .todo-container {
-
+    
             width: 400px;
             height: 600px;
             border-radius: 15px;
@@ -106,6 +103,8 @@ section {
     }
     .projects-container {
 
+        padding-top: 3.5em;
+
         display: flex;
         flex-flow: wrap;
         justify-content: center;
@@ -122,6 +121,8 @@ section {
             background-color: rgba(255, 255, 255, .75);
             border: 2px solid black;
             border-radius: 15px;
+
+            animation: fadeIn 1s;
 
             .todo-title {
                 text-align: center;
@@ -145,6 +146,15 @@ section {
                 }
             }
         }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
 

@@ -12,11 +12,20 @@ export class ProjectsService {
   projects: Project[] = [];
 
   currentOpenProject: Project;
-  observableOpenProject: Subject<Project>; // Completed-section and Uncompleted-section listen to this value
+  observableOpenProject: Subject<Project>; // Todos display listens to this value
 
   constructor() { }
 
   getProjects(): Observable<Project[]> {
+
+    // Get project keys in local storage
+    let currentProjectKeys: string[] = Object.keys(localStorage).filter(value => {
+      return value.startsWith('project');
+    });
+    // Get item belonging to each key
+    currentProjectKeys.forEach(key => {
+      this.projects.push(JSON.parse(localStorage.getItem(key)));
+    });
 
     // Return projects AND initialize currentOpenProject
     if(this.projects.length > 0) {
@@ -38,17 +47,28 @@ export class ProjectsService {
       id: this.projects.length,
       name: projName,
       date: currentDate,
-      complete: false,
       todoItems: []
     }
 
     this.projects[this.projects.length] = newProject;
+    this.openProject(newProject.id);
+
+    // Add project to local storage
+    localStorage.setItem(`project${newProject.id}`, JSON.stringify(newProject));
+
     this.idCount++;
   }
 
   removeProject(id: number): void {
     let index = this.projects.findIndex(element => id == element.id);
     this.projects.splice(index, 1);
+
+    localStorage.removeItem(`project${id}`);
+
+    if(this.projects.length == 0) {
+      this.currentOpenProject = null;
+      this.observableOpenProject.next(null);
+    }
   }
 
   openProject(id: number): void {
@@ -58,13 +78,23 @@ export class ProjectsService {
     this.observableOpenProject.next(this.currentOpenProject);
   }
 
-  addTodoToProject(todoItem: TodoItem) {
+  addTodoToProject(todoItem: TodoItem): void {
     this.currentOpenProject.todoItems[this.currentOpenProject.todoItems.length] = todoItem;
+
+    localStorage.setItem(`project${this.currentOpenProject.id}`, JSON.stringify(this.currentOpenProject));
   }
 
-  removeTodoFromProject(todoItem: TodoItem) {
+  removeTodoFromProject(todoItem: TodoItem): void {
     let index: number = this.currentOpenProject.todoItems.findIndex(todo => todoItem == todo);
-
     this.currentOpenProject.todoItems.splice(index, 1);
+
+    localStorage.setItem(`project${this.currentOpenProject.id}`, JSON.stringify(this.currentOpenProject));
+  }
+
+  updateTodoInProject(todoItem: TodoItem): void {
+    let index: number = this.currentOpenProject.todoItems.findIndex(todo => todoItem == todo);
+    this.currentOpenProject.todoItems[index] = todoItem;
+
+    localStorage.setItem(`project${this.currentOpenProject.id}`, JSON.stringify(this.currentOpenProject));
   }
 }
